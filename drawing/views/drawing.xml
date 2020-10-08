@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!--tree view of the project model -->
+        <record id="drawing_tree" model="ir.ui.view">
+            <field name="name">construction.drawing.tree</field>
+            <field name="model">construction.drawing</field>
+            <field name="arch" type="xml">
+                <tree string="Drawings">
+                    <field name="name_seq"/>
+                    <field name="project_id"/>
+                    <field name="total_drawing" sum="tot_draw" widget="monetary"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--form view of the project model -->
+        <record id="drawing_form" model="ir.ui.view">
+            <field name="name">construction.drawing.form</field>
+            <field name="model">construction.drawing</field>
+            <field name="arch" type="xml">
+                <form string="drawings">
+                    <header>
+                        <button name="action_quotation_send" string="Send BOQ" type="object" class="btn-primary"/>
+                        <button name="print_quotation" string="Generate BOQ" type="object" class="btn-primary"/>
+                        <button name="confirm_drawing" string="Confirm" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['department_approval','ir_approve','approved','cancel'])]}" groups="base.group_user"/>
+                        <button name="action_cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'in', ['department_approval','ir_approve','approved','cancel'])]}" groups="base.group_user"/>
+                        <button name="department_approve" type="object" string="Department Approve" attrs="{'invisible': [('state', 'in', ['new','ir_approve','approved','cancel'])]}" groups="estimation.group_estimation_department_manager"/>
+                        <button name="action_reject" type="object" string="Reject" attrs="{'invisible': [('state', 'in', ['new','approved','cancel'])]}" groups="estimation.group_estimation_department_manager,estimation.group_estimation_user"/>
+                        <button name="action_approve" type="object" string="Approve" attrs="{'invisible': [('state', 'in', ['new','department_approval','po_created','cancel','approved'])]}" groups="estimation.group_estimation_user"/>
+                        <button name="action_reset_draft" type="object" string="Reset To Draft" attrs="{'invisible': [('state', 'in', ['new','department_approval','ir_approve','approved'])]}"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" confirm="(Un)archiving an estimation automatically. Do you want to proceed?" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name_seq" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project_id"/>
+                                <field name="pricing_id" domain="[('project_id','=',project_id)]"/>
+                                <field name="Division"/>
+                                <field name="Building"/>
+                                <field name="division_copy"/>
+                                
+                            </group>
+                            <group>
+                                <field name="create_date"/>
+                                <field name="close_date"/>
+                                <field name="create_by_id"/>
+                                <field name="partner_id"/>
+                            </group>
+                        </group>
+                        <group>
+                                <field name="nb_production" widget="progressbar"/>
+                                <field name="nb_deli" widget="progressbar"/>
+                                <field name="nb_ere" widget="progressbar"/>
+                                <field name="nb_total" widget="progressbar"/>
+                            </group>
+                        
+
+
+
+                        <notebook>
+                            <page string="Item List">
+                                <field name="item_ids" context="{'default_pricing_id': pricing_id,'default_title':Division}" widget="one2many_list" >
+                                    <tree editable="bottom">
+                                        <field name="title"/>
+                                        <field name="pricing_id"/>
+                                        <field name="image_medium"/>
+                                        <field name="Width"/>
+                                        <field name="Length"/>
+                                        <field name="Height"/>
+                                        <field name="Thick"/>
+                                        <field name="Volume" readonly="1" sum="Total"/>
+                                        <field name="Quantity"/>
+                                        <field name="UR_production" widget="monetary" invisible="1"/>
+                                        <field name="Unit_Production" widget="monetary"/>
+                                        <field name="Amount_prod" widget="monetary"
+                                               sum="tot_pro"/>
+                                        <field name="UR_delivery" widget="monetary" invisible="1"/>
+                                        <field name="Unit_Delivery" widget="monetary"/>
+                                        <field name="Amount_deli" widget="monetary"
+                                               sum="tot_del"/>
+                                        <field name="UR_erection" widget="monetary" invisible="1"/>
+                                        <field name="Unit_Erection" widget="monetary"/>
+                                        <field name="Amount_erec" widget="monetary"
+                                               sum="tot_ere" />
+                                        <field name="UR_total" widget="monetary" invisible="1"/>
+                                        <field name="Amount_total" widget="monetary"
+                                               sum="amount_total" />
+                                        <field name="currency_id" invisible="1" />
+                                        <button name="open_bom" string="Add Item Codes" type="object"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2"
+									    name="total_drawing">
+									<field name="total_drawing" widget="monetary" />
+                                    <field name="total_test" string='hello'/>
+                                    <field name="currency_id" invisible="1" />
+								</group>
+                            </page>
+                            <page string="Other Information">
+                                <group>
+                                    <group>
+                                        <field name="confirmed_by_id" readonly="1"/>
+                                        <field name="department_manager_id" readonly="1"/>
+                                        <field name="approved_by_id" readonly="1"/>
+                                        <field name="rejected_by" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="confirmed_date"/>
+                                        <field name="department_approval_date"/>
+                                        <field name="approved_date"/>
+                                        <field name="rejected_date"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+       
+        <!--action of the drawing menu-->
+        <record id="action_drawing" model="ir.actions.act_window">
+            <field name="name">Drawings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">construction.drawing</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new bill of quantity !
+              </p>
+            </field>
+        </record>
+
+        <!--record id="project_issue_view_kanban_inherit_no_group_create" model="ir.ui.view">
+            <field name="name">project.issue.view.kanban.inherit.no.group.create</field>
+            <field name="model">project.issue</field>
+            <field name="inherit_id" ref="project_issue.project_issue_kanban_view"/>
+            <field name="mode">primary</field>
+            <field name="priority">32</field>
+            <field name="arch" type="xml">
+                <kanban position="attributes">
+                    <attribute name="group_create">false</attribute>
+                </kanban>
+            </field>
+        </record-->
+
+</odoo>

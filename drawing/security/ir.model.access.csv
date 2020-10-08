@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_construction_drawing,access.construction.drawing,model_construction_drawing,project.group_project_user,1,1,1,1
+access_item_number,access.item.number,model_item_number,project.group_project_user,1,1,1,1
+access_item_code,access.item.code,model_item_code,project.group_project_user,1,1,1,1
+access_item_sub,access.item.sub,model_item_sub,project.group_project_user,1,1,1,1
+access_project_item_type,access_project_item_type,model_project_item_type,project.group_project_user,base.group_no_one,1,1,1,1

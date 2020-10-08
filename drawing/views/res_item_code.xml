@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo> 
+        <!--tree view of the item code -->
+        <record id="code_tree_res" model="ir.ui.view">
+            <field name="name">item.code.res.tree</field>
+            <field name="model">res.item.code</field>
+            <field name="arch" type="xml">
+                <tree string="Drawings Item" create="0">
+                    
+                    <field name="title"/>
+                    <field name="Type"/>
+                    <field name="Type_of_finish"/>
+                    <field name="Width"/>
+                    <field name="Length"/>
+                    <field name="Height"/>
+                    <field name="Thick"/>
+                    <field name="Quantity"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--form view of the item code -->
+        <record id="code_form_res" model="ir.ui.view">
+            <field name="name">item.code.res.form</field>
+            <field name="model">res.item.code</field>
+            <field name="arch" type="xml">
+                <form string="Item Code" create="0">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="title" placeholder="Item Name"/>
+                            </h1>
+                        </div>
+                        <group col="4">
+                            <field name="Type"/>
+                            <field name="Type_of_finish"/>
+                            <field name="Width"/>
+                            <field name="Length"/>
+                            <field name="Height"/>
+                            <field name="Thick"/>
+                            <field name="Quantity"/>
+                        </group>
+                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--action of the item code menu-->
+        <record id="action_item_code_res" model="ir.actions.act_window">
+            <field name="name">Item Code Res</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.item.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <template id="report_bill_quotation_job_costing">
+          <br t-call="web.external_layout">
+            <br t-call="web.html_container">
+               <div class="page">
+                  <t t-foreach="docs" t-as="o">
+                  <h2><center>JOB ORDER</center></h2>
+                  <h3><center><span t-usertime="%Y-%m-%d %H-%M-%S" /></center></h3>
+                  <table style="border-collapse: collapse;width: 100%;" class="table table-condensed">
+                     <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;height:50%;">
+                        <td style="border: 1px solid black;">
+                           <strong>JOB NO : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.name_seq_project" />
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <strong>Ref.No : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.Ref_no" />
+                        </td>
+                     </tr>
+
+                     <tr style="padding: 8px;text-align: left;">
+                        <td style="border: 1px solid black;">
+                           <strong>PROJECT NAME : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.name" />
+                        </td>
+                     </tr>
+
+                     <tr style="padding: 8px;text-align: left;">
+                        <td style="border: 1px solid black;">
+                           <strong>CONTRACTOR : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id" />
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                        <td style="border: 1px solid black;">
+                           <strong>SITE COORDINATOR : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.Site_address" />
+                        </td>
+
+                        <td style="border: 1px solid black;">
+                           <strong>Contact No : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id.phone" />
+                        </td>
+                     </tr>
+                  </table>
+                     <p>
+                        Note : Please see attached approved and stamped variation Order Quotation (Page 2) / Bill Of Quantity actual rate , description of materials , quantity , dimensions and type of finish .
+                     </p>
+                  <table style="border-collapse: collapse;width: 35%;border: 1px solid black;" class="table table-condensed">
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;height:50%;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Operations : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Accounting : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Production : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Design : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Estimation : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Site : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Store : </strong>
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Project Coordinator : </strong>
+                        </td>
+                     </tr>
+                  </table>
+                     <div style=" position: absolute; top: 800px; right: 0 ; width: 100px; height: 100px;">
+                         Approved BY :
+                        <span t-field="o.project_id.user_id" />
+                     </div>
+                  </t>
+               </div>
+               <p style="page-break-after:always;"/>
+               <div class="page">
+                  <t t-foreach="docs" t-as="o">
+                  <h2><center>Quotation</center></h2>
+                     <table style="border-collapse: collapse;width: 100%;" class="table table-condensed">
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;height:50%;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Company : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.name_seq_project" />
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <strong>Our Ref : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.Ref_no" />
+                        </td>
+                     </tr>
+
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Attention : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id" />
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <strong>From : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.user_id.name" />
+                        </td>
+                     </tr>
+
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Your Ref : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id" />
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <strong>Division : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.Division" />
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Contact No : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id.phone" />
+                           <span t-field="o.project_id.partner_id.mobile" />
+                        </td>
+
+                        <td style="border: 1px solid black;">
+                           <strong>Our Tel : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id.phone" />
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Project : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id" />
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <strong>Our Fax : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id.phone" />
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
+                        <td style="border: 1px solid black;">
+                           <strong>Consultant : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id" />
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <strong>Project's stage : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.project_id.partner_id.phone" />
+                        </td>
+                     </tr>
+                  </table>
+                  <div class="container">
+                     <div class="row">
+                        <h2 style="text-align : center;">
+                           <p>Subject :  </p><span t-field="o.Division" /><p>  Works</p>
+                        </h2>
+                        <br />
+                     </div>
+                  </div>
+                  <br/>
+                  <p>
+Dear Sir,
+With reference to your enquiry regarding the above subject, we are pleased to submit our best price quotation with attached BOQ with the amount of QAR <span t-field="o.total_drawing" />.Please find below standard details for terms and conditions.
+                        </p>
+                        <br/>
+                        <p style="font:times new roman;">
+                     <h2>Terms and conditions :</h2>
+- Type of finish - as mentioned in the BOQ.<br/>
+- Price includes supply and installation.<br/>
+- Our offer is re-measurable not lump sum.<br/>
+- Payment Terms : Progressive monthly payment as below:<br/>
+      &#9830;70% against delivered material to site<br/>
+      &#9830;30% against install material on site<br/>
+      &#9830;10% retention to be released against bank guarantee or security check<br/>
+- The following to be provided by yourselves at free of cost:<br/>
+      &#9830;Safe site access<br/>
+      &#9830;Crane (lifting, handling and plants ) and safe erected Scaffolding.<br/>
+      &#9830;Safe storage facility for our material.<br/>
+      &#9830;Safe Electric power and water supply up to the work location.<br/><br/>
+                  </p>
+                   <p>
+Hope you find our proposal most satisfactory, however , kindly contact us in case you need any further assistance or clarifications, in the meantime we assure you of our best services at all times .<br/>
+Thanks and best regards,
+                   </p>
+                  </t>
+               </div>
+               <div class="page">
+                  <p style="page-break-after:always;"></p>
+                  <t t-foreach="docs" t-as="o">
+                     <div class="container">
+                        <div class="row">
+                           <h2 style="text-align : center;">
+                              <center><span t-field="o.name_seq" /></center>
+                           </h2>
+                           <br />
+                        </div>
+                     </div>
+                     <br/>
+                     <table style="border-collapse: collapse;width: 100%;" bgcolor="#D10000" class="table table-condensed">
+                        <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                           <td style="border: 1px solid black;">
+                              <strong>Project ID : </strong>
+                           </td>
+                           <td style="border: 1px solid black;">
+                              <span t-field="o.project_id.name_seq_project" />
+                           </td>
+                        </tr>
+                        <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                           <td style="border: 1px solid black;">
+                              <strong>Project : </strong>
+                           </td>
+                           <td style="border: 1px solid black;">
+                              <span t-field="o.project_id.name" />
+                           </td>
+                        </tr>
+                        <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;height:50%;">
+                           <td style="border: 1px solid black;">
+                              <strong>Pricing : </strong>
+                           </td>
+                           <td style="border: 1px solid black;">
+                              <span t-field="o.pricing_id" />
+                           </td>
+                        </tr>
+                        <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                           <td style="border: 1px solid black;">
+                              <strong>Division : </strong>
+                           </td>
+                           <td style="border: 1px solid black;">
+                              <span t-field="o.Division" />
+                           </td>
+                        </tr>
+                        <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                           <td style="border: 1px solid black;">
+                              <strong>Building : </strong>
+                           </td>
+                           <td style="border: 1px solid black;">
+                              <span t-field="o.Building" />
+                           </td>
+                        </tr>
+                        <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                           <td style="border: 1px solid black;">
+                              <strong>Created By : </strong>
+                           </td>
+                           <td style="border: 1px solid black;">
+                              <span t-field="o.create_by_id" />
+                           </td>
+                        </tr>
+                     </table>
+                     <h2>Summary Costs</h2>
+                     <table style="border-collapse: collapse;width: 100%;" class="table table-condensed">
+                     <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                        <td style="border: 1px solid black;">
+                           <strong>Total Production Amount : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.total_prod" />
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
+                        <td style="border: 1px solid black;">
+                           <strong>Total Delivery Amount : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.total_deli" />
+                        </td>
+                     </tr>
+
+                     <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;height:50%;">
+                        <td style="border: 1px solid black;">
+                           <strong>Total Erection Amount : </strong>
+                        </td>
+                        <td style="border: 1px solid black;">
+                           <span t-field="o.total_erec" />
+                        </td>
+                     </tr>
+                     <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;height:50%;">
+                        <td style="border: 1px solid black;">
+                           <strong>Total Amount : </strong>
+                        </td>
+                        <td style="border: 1px solid black;" bgcolor="#DAC3BE">
+                           <span t-field="o.total_drawing" />
+                        </td>
+                     </tr>
+                  </table>
+                  </t>
+               </div>
+            </br>
+            </br>
+      </template>
+
+      <!--template id="report_bill_quotation">
+       <t t-call="web.external_layout">
+          <t t-call="web.html_container">
+             <br/>
+             <br/>
+         <t t-foreach="docs" t-as="o">
+               <div class="page">
+                  <h2>Report title</h2>
+                  <p>This object's name is <span t-field="o.project_id.Ref_no"/></p>
+               </div>
+            </t>
+         </t>
+      </t>
+      </template-->
+
+   <!--template id="report_bom_structure">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.basic_layout">
+            <t t-call-assets="mrp.assets_common" t-js="False"/>
+            <t t-foreach="docs" t-as="data">
+                <div class="page">
+                    <t t-call="mrp.report_mrp_bom"/>
+                </div>
+                <p style="page-break-before:always;"> </p>
+            </t>
+        </t>
+    </template-->
+</odoo>

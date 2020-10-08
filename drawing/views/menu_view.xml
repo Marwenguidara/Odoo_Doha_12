@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- drawing menu-->
+        <menuitem id="main_menu_drawing"
+            name="Drawing"
+            sequence="1"/>
+        <!-- Drawing -->
+        <menuitem id="menu_construction_drawing" 
+            name="Drawing Service"  
+            action="action_drawing"
+            parent="main_menu_drawing"
+            sequence="1"/>
+        <!-- Items -->
+        <menuitem id="menu_items" 
+            name="Items"
+            parent="main_menu_drawing"
+            sequence="2"/>
+        <menuitem id="submenu_item_number" 
+            name="Item Number"
+            parent="menu_items"
+            action="action_item_number" 
+            sequence="1"/>
+        <menuitem id="submenu_item_code" 
+            name="Item Code"
+            parent="menu_items"
+            action="action_item_code_id" 
+            sequence="2"/>
+        <menuitem id="submenu_item_sub" 
+            name="Sub Items"
+            parent="menu_items"
+            action="action_item_sub" 
+            sequence="3"/>
+        <!-- Config -->
+        <menuitem id="menu_configrution"
+            name="Configrution"
+            parent="main_menu_drawing"
+            sequence="3"/>
+        <menuitem id="menu_project_item_stages"
+            name="Stages"
+            action="open_item_type_form"  
+            parent="menu_configrution"
+            sequence="1"/>
+</odoo>

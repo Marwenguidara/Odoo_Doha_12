@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--Template of mail in drawing send mail-->
+        <record id="quotation_email_template_id6" model="mail.template">
+            <field name="name">Quotation : Send by email2</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="email_from">${object.user_id.login |safe}</field>
+            <field name="email_to">${object.partner_id.email}</field>
+            <field name="subject">Bill Of Quantity (Ref ${object.name_seq_project})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px;font-size: 13px;">
+                        Dear ${object.partner_id.name}
+                        <br /><br/>
+                        Here is your patient card with reference${object.name_seq_project}
+                        <br /><br />
+                        If you have queries feel free to ask.
+                    </p>
+                    
+                </div>
+            </field>
+            <field name="report_template" ref="drawing.report_bill_quotation_1"/>
+            <field name="report_name">Quotation_${(object.name_seq)}</field>
+        </record>
+    </data>
+</odoo>
