@@ -8,7 +8,6 @@ class HrDashboard(models.Model):
     _name = 'hr.dashboard'
     _description = 'HR Dashboard'
     name = fields.Char("")
-    datetime=fields.Date("tesssssssssssssssst")
 
     @api.model
     def get_employee_info(self):
