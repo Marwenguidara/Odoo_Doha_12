@@ -8,6 +8,7 @@ class HrDashboard(models.Model):
     _name = 'hr.dashboard'
     _description = 'HR Dashboard'
     name = fields.Char("")
+    datetime=fields.Date("tesssssssssssssssst")
 
     @api.model
     def get_employee_info(self):
@@ -22,6 +23,7 @@ class HrDashboard(models.Model):
                 round( CAST(c.total_erec as numeric), 2) as total_erec ,
                 round( CAST(c.total_prod as numeric), 2) as total_prod,
                 round( CAST(c.total_drawing as numeric), 2) as total_drawing,
+                round( CAST(p.total_cost as numeric), 2) as total_drawing,
                 c.nb_production,
                 c.nb_deli,
                 c.nb_ere,
