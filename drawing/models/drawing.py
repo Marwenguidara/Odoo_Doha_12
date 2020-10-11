@@ -51,7 +51,7 @@ class ConstructionDrawing (models.Model):
     total_test =fields.Float(string='tessssssst',compute='_compute_total_drawing2',store=True)
     division_copy=fields.Char(string='Division',compute='get_division',store=True)
     nb_production=fields.Integer(string='Progress Production',compute='avancement',store=True)
-    nb_deli=fields.Integer(string='Progress Delivery',compute='avancement',store=True)
+    nb_deli=fields.Integer(string='Progress Delivery1',compute='avancement',store=True)
     nb_ere=fields.Integer(string='Progress Erection',compute='avancement',store=True)
     nb_total=fields.Integer(string='Progress Total',compute='avancement',store=True)
     nb_item=fields.Integer(string='number Item',compute='avancement',store=True)
