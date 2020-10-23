@@ -45,6 +45,8 @@
                <field name="Site_coordinator"/>
                <field name="Ref_no"/>
                <field name="Description"/>
+               <field name="total_cost1"/>
+               <field name="total_estimated_cost1"/>
            </field>
             <field name="partner_id" position="before">
                <field name="name_seq_project"/>

@@ -107,12 +107,52 @@
             <!--Charts-->
             <!--label for charts-->
             <div class="main-content">
+                <div class="container-fluid">
+
+                  <div class="row">
+                    <div class="col-md-12" style="overflow-x: scroll;">
+                        <h4>Project progress monitoring</h4>
+                        <table id="progress_details" style='border-spacing: 1px !important;border-collapse: separate !important;' class="display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+
+                                    <th>Name</th>
+                                    <th>Name Drawing</th>
+                                    <th>Number Items</th>
+                                    <th style="text-align:center;">Progress Production</th>
+                                    <th style="text-align:center;">Progress Delivery</th>
+                                    <th style="text-align:center;">Progress Erection</th>
+                                    <th style="text-align:center;">Progress Total</th>
+                                    <th style="text-align:center;">Progress Estimation</th>
+
+                                    <th style="visibility: hidden;">id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="widget.employee_data.emp_table" t-as="e">
+                                    <td><span t-esc="e['name']"/></td>
+                                    <td class='line_click'><span t-esc="e['name_seq']"/></td>
+                                    <td style="text-align:center;"><span t-esc="e['nb_item']"/></td>
+                                    <td style="text-align:center;"><span t-esc="e['nb_production']"/> %</td>
+                                    <td style="text-align:center;"><span t-esc="e['nb_deli']"/> %</td>
+                                    <td widget="progressbar"  style="text-align:center;"><span t-esc="e['nb_ere']"/> %</td>
+                                    <td style="text-align:center;"><span t-esc="e['nb_total']"/> %</td>
+                                    <td style="text-align:center;visibility: hidden;"><span t-esc="e['estmation']"/></td>
+                                    <td class='line_click' style="text-align:center;visibility: hidden;"><span t-esc="e['id']"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </div>
+          </div>
+            <div class="main-content">
 				<div class="container-fluid">
 
                   <div class="row">
                     <div class="col-md-12" style="overflow-x: scroll;">
                         <h4>Project follow-up </h4>
-                        <table id="emp_details" class="display nowrap" cellspacing="0" width="100%">
+                        <table id="emp_details" style='border-spacing: 1px !important;border-collapse: separate !important;' class="display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
 
@@ -124,6 +164,7 @@
                                     <th style="text-align:center;">Amount Erection</th>
                                     <th style="text-align:center;">Total Amount</th>
                                     <th style="visibility: hidden;">id</th>
+
                                     
 
 
@@ -146,46 +187,7 @@
                 </div>
               </div>
           </div>
-            <div class="main-content">
-                <div class="container-fluid">
-
-                  <div class="row">
-                    <div class="col-md-12" style="overflow-x: scroll;">
-                        <h4>Project progress monitoring</h4>
-                        <table id="progress_details" class="display nowrap" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-
-                                    <th>Name</th>
-                                    <th>Name Drawing</th>
-                                    <th>Number Items</th>
-                                    <th style="text-align:center;">Progress Production</th>
-                                    <th style="text-align:center;">Progress Delivery</th>
-                                    <th style="text-align:center;">Progress Erection</th>
-                                    <th style="text-align:center;">Progress Total</th>
-                                    <th style="visibility: hidden;">id</th>
-                                    
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr t-foreach="widget.employee_data.emp_table" t-as="e">
-                                    <td><span t-esc="e['name']"/></td>
-                                    <td class='line_click'><span t-esc="e['name_seq']"/></td>
-                                    <td style="text-align:center;"><span t-esc="e['nb_item']"/></td>
-                                    <td style="text-align:center;"><span t-esc="e['nb_production']"/> %</td>
-                                    <td style="text-align:center;"><span t-esc="e['nb_deli']"/> %</td>
-                                    <td widget="progressbar"  style="text-align:center;"><span t-esc="e['nb_ere']"/> %</td>
-                                    <td style="text-align:center;"><span t-esc="e['nb_total']"/> %</td>
-                                    <td class='line_click' style="text-align:center;visibility: hidden;"><span t-esc="e['id']"/></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-              </div>
-          </div>
+            
         </div>
     </t>
 </templates>

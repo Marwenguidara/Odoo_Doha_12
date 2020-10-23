@@ -309,11 +309,47 @@ var HrDashboardView = AbstractAction.extend(ControlPanelMixin, {
                         return a + b.replace(/[^\d]/g, '')*1;
                     },0)/rows.count();
 
-            // Add category name to the <tr>. NOTE: Hardcoded colspan
+            var diff_cost = rows
+                .data()
+                .pluck(7)
+                .reduce( function (a, b) {
+                    console.log(intVal(a))
+                    var cost =intVal(b)
+                   
+                   return cost;
+                        
+                    },0)*100;
+
+            var alert = prog_total - diff_cost;
+
+            if (alert >= 0 ){
+                // Add category name to the <tr>. NOTE: Hardcoded colspan
             return $('<tr/>')
-                .append('<td>' + group + ' (' + rows.count() + ')<td style="text-align:center;">'+nb_item+'</td><td style="text-align:center;">'+prog_prod.toFixed(0)+'%</td><td style="text-align:center;">'+prog_derivly.toFixed(0)+' %</td><td style="text-align:center;">'+prog_erec.toFixed(0)+' %</td><td style="text-align:center;">'+prog_total.toFixed(0)+' %</td>')
+                .append('<td>' + group + ' (' + rows.count() + ')<td style="text-align:center;"><div>'+nb_item+'</div></td><td style="text-align:center;padding-left: 3em;"><div style="width:'+prog_prod.toFixed(0)+'px;" class="test">'+prog_prod.toFixed(0)+'%</div></td><td style="text-align:center;padding-left: 3em;"><div style="width:'+prog_derivly.toFixed(0)+'px;" class="test">'+prog_derivly.toFixed(0)+' %</div></td><td style="padding-left: 3em;text-align:center;"><div style="width:'+prog_erec.toFixed(0)+'px;" class="test">'+prog_erec.toFixed(0)+' %</div></td><td style="padding-left: 3em;text-align:center;"><div style="width:'+prog_total.toFixed(0)+'px;" class="test">'+prog_total.toFixed(0)+' %</div></td><td style="text-align:center;">'+diff_cost.toFixed(0)+'%</td><td><div style="text-align:center;background-color: #1a9349;color:#1a9349" class="alert-estimation">alert</div></td>')
                 .attr('data-name', group)
                 .toggleClass('collapsed', collapsed);
+
+
+            }
+            else if (alert <0 && alert>-31){
+                return $('<tr/>')
+                .append('<td>' + group + ' (' + rows.count() + ')<td style="text-align:center;"><div>'+nb_item+'</div></td><td style="text-align:center;padding-left: 3em;"><div style="width:'+prog_prod.toFixed(0)+'px;" class="test">'+prog_prod.toFixed(0)+'%</div></td><td style="text-align:center;padding-left: 3em;"><div style="width:'+prog_derivly.toFixed(0)+'px;" class="test">'+prog_derivly.toFixed(0)+' %</div></td><td style="padding-left: 3em;text-align:center;"><div style="width:'+prog_erec.toFixed(0)+'px;" class="test">'+prog_erec.toFixed(0)+' %</div></td><td style="padding-left: 3em;text-align:center;"><div style="width:'+prog_total.toFixed(0)+'px;" class="test">'+prog_total.toFixed(0)+' %</div></td><td style="text-align:center;">'+diff_cost.toFixed(0)+'%</td><td><div style="text-align:center;background-color: orange;color:orange" class="alert-estimation">alert</div></td>')
+                .attr('data-name', group)
+                .toggleClass('collapsed', collapsed);
+
+            }
+            else{
+                return $('<tr/>')
+                .append('<td>' + group + ' (' + rows.count() + ')<td style="text-align:center;"><div>'+nb_item+'</div></td><td style="text-align:center;padding-left: 3em;"><div style="width:'+prog_prod.toFixed(0)+'px;" class="test">'+prog_prod.toFixed(0)+'%</div></td><td style="text-align:center;padding-left: 3em;"><div style="width:'+prog_derivly.toFixed(0)+'px;" class="test">'+prog_derivly.toFixed(0)+' %</div></td><td style="padding-left: 3em;text-align:center;"><div style="width:'+prog_erec.toFixed(0)+'px;" class="test">'+prog_erec.toFixed(0)+' %</div></td><td style="padding-left: 3em;text-align:center;"><div style="width:'+prog_total.toFixed(0)+'px;" class="test">'+prog_total.toFixed(0)+' %</div></td><td style="text-align:center;">'+diff_cost.toFixed(0)+'%</td><td><div style="text-align:center;background-color: red;color:red" class="alert-estimation">alert</div></td>')
+                .attr('data-name', group)
+                .toggleClass('collapsed', collapsed);
+
+            }
+
+
+
+
+            
         }
 
         },
@@ -353,7 +389,7 @@ var HrDashboardView = AbstractAction.extend(ControlPanelMixin, {
 
         var tr = $(this).closest('tr');
         var row = table.row( tr );
-        var line = row.data(self.employee_data.emp_table.codes)[7];
+        var line = row.data(self.employee_data.emp_table.codes)[8];
         var l = line.split('<span>').pop().split('</span>')[0];
         var id = parseInt(l);
 

@@ -8,7 +8,6 @@ class HrDashboard(models.Model):
     _name = 'hr.dashboard'
     _description = 'HR Dashboard'
     name = fields.Char("")
-
     @api.model
     def get_employee_info(self):
         uid = request.session.uid
@@ -22,13 +21,21 @@ class HrDashboard(models.Model):
                 round( CAST(c.total_erec as numeric), 2) as total_erec ,
                 round( CAST(c.total_prod as numeric), 2) as total_prod,
                 round( CAST(c.total_drawing as numeric), 2) as total_drawing,
-                round( CAST(p.total_cost as numeric), 2) as total_drawing,
+                p.total_cost1,
+                p.total_estimated_cost1,
                 c.nb_production,
                 c.nb_deli,
                 c.nb_ere,
                 c.nb_total,
                 c.division_copy,
-                c.nb_item
+                c.nb_item,
+                case 
+                when 
+                    p.total_estimated_cost1 = 0 then 0 
+                    else
+                    (p.total_cost1) / (p.total_estimated_cost1) 
+                end as estmation
+
              from construction_drawing c inner join project_project p on (p.id = project_id)
         """
         # coalesce(c.nombre_eff,0) as cible_categ, (coalesce(c.nombre_eff,0)-coalesce(m.effectif,0)) as ecart_categorie, b.id,b.status,COALESCE(b.code_besoin, 'aucun') as codes, m.int_site as magasin,p.code_poste, p.state, p.fammille_post, m.date_ouverture,m.etat_m,coalesce(p.effectif_reel,0) as nb_reel ,coalesce(p.effectif_cible,0) as nb_cible ,(coalesce(p.effectif_cible,0)-coalesce(p.effectif_reel,0)) as ecart

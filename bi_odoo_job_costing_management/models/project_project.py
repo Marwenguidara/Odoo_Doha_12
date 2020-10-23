@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 from odoo import api, fields, models, _
-
+import logging
 
 class Project(models.Model):
     _inherit = 'project.project'
@@ -21,7 +21,9 @@ class Project(models.Model):
     purchase_id = fields.One2many('purchase.order.line', 'order_id')
 
     # compute the total real cost of the project & the total estimated cost
-    total_cost = fields.Float("Total Cost", compute="_compute_total_cost", default=0.0)
+    total_cost = fields.Float("Total Cost", compute="_compute_total_cost")
+    total_cost1 = fields.Float("Total Cost" , compute="get_total_cost",store=True)
+    total_estimated_cost1 = fields.Float('estimated' , compute='get_cost_estimated',store=True)
     total_estimated_cost = fields.Float("Total Estimated Cost", compute="_compute_total_estimated_cost", default=0.0)
     Drawing_count = fields.Integer(string='drawing', compute='get_drawing_count')
     Estimation_count = fields.Integer(string='estimation', compute='get_estimation_count')
@@ -65,6 +67,19 @@ class Project(models.Model):
             line.update({
                 'total_drawing': total_drawing,
             })
+
+
+    @api.multi
+    @api.depends('total_cost')
+    def get_total_cost(self):
+        for record in self :
+            record.total_cost1 = record.total_cost
+
+    @api.multi
+    @api.depends('total_estimated_cost')
+    def get_cost_estimated(self):
+        for record in self:
+            record.total_estimated_cost1 = record.total_estimated_cost
 
     # compute the amount of any department
     @api.multi
@@ -232,12 +247,15 @@ class Project(models.Model):
         return True
 
     # Calculate the total cost & the total estimated cost all estimations & cost sheet for the same project
+    @api.multi
     def _compute_total_cost(self):
+        logging.info('teeeeeeeeeeeeees')
         for project in self:
-            project.total_cost = 0.0
+            total_cost = 0.0
             cost_sheet = self.env['job.cost.sheet'].search([('project_id', '=', project.id)])
             for sheet in cost_sheet:
-                project.total_cost += sheet.total_cost
+                total_cost += sheet.total_cost
+            project.total_cost=total_cost
 
     def _compute_total_estimated_cost(self):
         for project in self:
