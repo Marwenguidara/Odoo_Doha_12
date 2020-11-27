@@ -54,44 +54,21 @@
                             <group name="item_detail">
                                 <field name="Type"/>
                                 <field name="Type_of_finish"/>
+                                
+                                <field name="Quantity"/>
+                                <field name="Unit"/>
+                                <field name="Volume"/>
+
+                            </group>
+                            <group name="item_amount">
                                 <field name="Width"/>
                                 <field name="Length"/>
                                 <field name="Height"/>
                                 <field name="Thick"/>
-                                <field name="Quantity"/>
-                                <field name="Unit"/>
-                                <field name="Volume"/>
-                                <field name="currency_id"/>
-                                <field name="user_id"/>
-                            </group>
-                            <group name="item_amount">
-                                <field name="UR_total"/>
-                                <field name="Amount_total"/>
-                                <field name="color"/>
-                                <field name="active"/>
-                                <field name="kanban_state"/>
-                                <field name="legend_normal"/>
-                                <field name="legend_blocked"/>
-                                <field name="legend_done"/>
+
                             </group>
                         </group>
-                        <group>
-                            <group>
-                                <field name="UR_production"/>
-                                <field name="UR_delivery"/>
-                                <field name="UR_erection"/>
-                            </group>
-                            <group>
-                                <field name="Amount_prod"/>
-                                <field name="Amount_deli"/>
-                                <field name="Amount_erec"/>
-                            </group>
-                            <group>
-                                <field name="Unit_Production"/>
-                                <field name="Unit_Delivery"/>
-                                <field name="Unit_Erection"/>
-                            </group>
-                        </group>
+                    
                         <notebook>
                             <page string="Item Code">
                             <field name="item_code_ids" mode="kanban" context="{'default_item_id': id,'default_title' :title,'default_project_id':project_id}">

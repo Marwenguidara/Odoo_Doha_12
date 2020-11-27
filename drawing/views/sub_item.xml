@@ -43,11 +43,6 @@
                             <field name="Quantity"/>
                             <field name="Unit"/>
                             <field name="project_id" required="1"/>
-                            <field name="active"/>
-                            <field name="kanban_state"/>
-                            <field name="legend_normal"/>
-                            <field name="legend_blocked"/>
-                            <field name="legend_done"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
