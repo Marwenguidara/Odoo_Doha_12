@@ -35,8 +35,7 @@
                     <field name="purchase_order_count" widget="statinfo" string="Purchase" />
                 </button>
            </div>
-
-
+           
            <field name="user_id" position="after">
                <field name="total_cost"/>
                <field name="total_estimated_cost"/>
@@ -45,8 +44,6 @@
                <field name="Site_coordinator"/>
                <field name="Ref_no"/>
                <field name="Description"/>
-               <field name="total_cost1"/>
-               <field name="total_estimated_cost1"/>
            </field>
             <field name="partner_id" position="before">
                <field name="name_seq_project"/>
