@@ -106,98 +106,7 @@
                </div>
                <p style="page-break-after:always;"/>
                <div class="page">
-                  <t t-foreach="docs" t-as="o">
-                  <h2><center>Quotation</center></h2>
-                     <table style="border-collapse: collapse;width: 100%;" class="table table-condensed">
-                     <tr style="padding: 8px;text-align: left;border: 1px solid black;height:50%;border-top: 1px solid black;">
-                        <!-- <td style="border: 1px solid black;">
-                           <strong>Company : </strong>
-                        </td> -->
-                        <!-- <td style="border: 1px solid black;">
-                           <span t-field="o.name_seq_project" />
-                        </td> -->
-                        <td style="border: 1px solid black;">
-                           <strong>Our Ref : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.Ref_no" />
-                        </td>
-                     </tr>
-
-                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
-                        <td style="border: 1px solid black;">
-                           <strong>Attention : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.partner_id" />
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <strong>From : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.user_id.name" />
-                        </td>
-                     </tr>
-
-                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
-                        <td style="border: 1px solid black;">
-                           <strong>Your Ref : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.partner_id" />
-                        </td>
-                        <!-- <td style="border: 1px solid black;">
-                           <strong>Division : </strong>
-                        </td> -->
-                        <!-- <td style="border: 1px solid black;">
-                           <span t-field="o.Division" />
-                        </td> -->
-                     </tr>
-                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
-                        <td style="border: 1px solid black;">
-                           <strong>Contact No : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.partner_id.phone" />
-                           <span t-field="o.partner_id.mobile" />
-                        </td>
-
-                        <td style="border: 1px solid black;">
-                           <strong>Our Tel : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.partner_id.phone" />
-                        </td>
-                     </tr>
-                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
-                        <td style="border: 1px solid black;">
-                           <strong>Project : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.name" />
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <strong>Our Fax : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.partner_id.phone" />
-                        </td>
-                     </tr>
-                     <tr style="padding: 8px;text-align: left;border: 1px solid black;border-top: 1px solid black;">
-                        <td style="border: 1px solid black;">
-                           <strong>Consultant : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.name" />
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <strong>Project's stage : </strong>
-                        </td>
-                        <td style="border: 1px solid black;">
-                           <span t-field="o.partner_id.phone" />
-                        </td>
-                     </tr>
-                  </table>
+                  
                   <!-- <div class="container">
                      <div class="row">
                         <h2 style="text-align : center;">
@@ -231,7 +140,6 @@ With reference to your enquiry regarding the above subject, we are pleased to su
 Hope you find our proposal most satisfactory, however , kindly contact us in case you need any further assistance or clarifications, in the meantime we assure you of our best services at all times .<br/>
 Thanks and best regards,
                    </p>
-                  </t>
                </div>
                <div class="page">
                   <p style="page-break-after:always;"></p>
@@ -327,8 +235,14 @@ Thanks and best regards,
                            <strong><span t-field="o.total_drawing" /></strong>
                         </td>
                      </tr>
+
                   </table>
-               </t></div></br></br></template>
+               </t><div class ="row" style="margin: 50px;margin-left:50px"> <div><strong> Signer the Manager  </strong></div><div style="padding-left: 500px;"><strong> Signer the client </strong></div></div></div></br></br>
+
+               
+
+
+            </template>
 
 
                     <!--  <table style="border-collapse: collapse;width: 100%;" bgcolor="#D10000" class="table table-condensed">

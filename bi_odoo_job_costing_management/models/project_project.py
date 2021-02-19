@@ -21,7 +21,7 @@ class Project(models.Model):
     purchase_id = fields.One2many('purchase.order.line', 'order_id')
 
     # compute the total real cost of the project & the total estimated cost
-    total_cost = fields.Float("Total Cost", compute="_compute_total_cost")
+    total_cost = fields.Float("Total Cost")
     total_cost1 = fields.Float("Total Cost" , compute="get_total_cost",store=True)
     total_estimated_cost1 = fields.Float('estimated' , compute='get_cost_estimated',store=True)
     total_estimated_cost = fields.Float("Total Estimated Cost", compute="_compute_total_estimated_cost", default=0.0)
@@ -377,7 +377,7 @@ class Project(models.Model):
         self.ensure_one()
         ir_model_data = self.env['ir.model.data']
         try:
-            template_id = ir_model_data.get_object_reference('bi_odoo_job_costing_management', 'quotation_email_template_id6')[1]
+            template_id = ir_model_data.get_object_reference('bi_odoo_job_costing_management', 'quotation_email_template_id8')[1]
         except ValueError:
             template_id = False
         try:

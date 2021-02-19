@@ -29,9 +29,7 @@
             <br/>
             <br/>
             <div class="page">
-               <div class="header">
-                     This Is Header
-                </div>
+               
                <h1><center>BILL OF QUANTITY</center></h1>
             </div>
             <div class="page">
@@ -203,6 +201,8 @@
                      </tr>
                   </table>
                   </br>
+
+                  <div class ="row" style="margin: 50px;margin-left:50px"> <div><strong> Signer the Manager </strong></div><div style="padding-left: 500px;"><strong> Signer the client </strong></div></div>
                   <!--table style="border-collapse: collapse;width: 100%;" class="table table-condensed">
                      <tr style="padding: 8px;text-align: left;border-top: 1px solid #ddd;">
                         <td>

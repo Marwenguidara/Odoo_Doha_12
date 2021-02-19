@@ -7,7 +7,9 @@
         <field name="inherit_id" ref="project.edit_project" />
         <field name="arch" type="xml">
             <div class="oe_button_box" name="button_box" position="inside">
-                <button class="oe_stat_button" icon="fa-tasks" type="object" name="action_open_items" string="Items" />
+                <button class="oe_stat_button" icon="fa-tasks" type="object" name="action_open_items_number" string="Items Number" />
+                <button class="oe_stat_button" icon="fa-tasks" type="object" name="action_open_items_code" string="Items Code" />
+                <button class="oe_stat_button" icon="fa-tasks" type="object" name="action_open_items_sub" string="Items Sub" />
             </div>
         </field>
         </record>

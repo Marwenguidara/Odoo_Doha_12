@@ -172,16 +172,16 @@ class ItemNumber(models.Model):
     def _compute_kanban_state_label(self):
         for task in self:
             
-            if task.kanban_state == 'White':
-                task.kanban_state_label = task.legend_normal
-            if task.kanban_state == 'Blue':
+            if task.kanban_state == 'Green':
+                task.kanban_state_label = task.legend_done
+            elif task.kanban_state == 'Blue':
                 task.kanban_state_label = task.legend_delivery
             elif task.kanban_state == 'Orange':
                 task.kanban_state_label = task.legend_erection
             elif task.kanban_state == 'Yellow':
                 task.kanban_state_label = task.legend_blocked
             else:
-                task.kanban_state_label = task.legend_done
+                task.kanban_state_label = task.legend_normal
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -421,16 +421,16 @@ class ItemCodeID(models.Model):
     def _compute_kanban_state_label(self):
         for task in self:
             
-            if task.kanban_state == 'White':
-                task.kanban_state_label = task.legend_normal
-            if task.kanban_state == 'Blue':
+            if task.kanban_state == 'Green':
+                task.kanban_state_label = task.legend_done
+            elif task.kanban_state == 'Blue':
                 task.kanban_state_label = task.legend_delivery
             elif task.kanban_state == 'Orange':
                 task.kanban_state_label = task.legend_erection
             elif task.kanban_state == 'Yellow':
                 task.kanban_state_label = task.legend_blocked
             else:
-                task.kanban_state_label = task.legend_done
+                task.kanban_state_label = task.legend_normal
 
     @api.model
     def _read_group_stage_ids(self, stages, domain, order):
@@ -447,7 +447,7 @@ class ItemSub(models.Model):
     title = fields.Char('Item Sub', required=True, translate=True)
     code_id = fields.Many2one('item.code', string='Parent Item',default=lambda self: self.env.context.get('code_id'),readonly=True)
     item_id = fields.Many2one(related='code_id.item_id', store=True, string='Parent Item',readonly=True)
-    project_id = fields.Many2one('project.project',compute='get_item_data',string='Project')
+    project_id = fields.Many2one('project.project',compute='get_item_data',string='Project',store=True)
     # drawing_id = fields.Many2one('construction.drawing', store=True, string='Drawing', readonly=True)
     sequence = fields.Integer('Sequence', default=10)
     image_medium = fields.Binary(String='image',attachment=True,)
@@ -573,16 +573,16 @@ class ItemSub(models.Model):
     def _compute_kanban_state_label(self):
         for task in self:
             
-            if task.kanban_state == 'White':
-                task.kanban_state_label = task.legend_normal
-            if task.kanban_state == 'Blue':
+            if task.kanban_state == 'Green':
+                task.kanban_state_label = task.legend_done
+            elif task.kanban_state == 'Blue':
                 task.kanban_state_label = task.legend_delivery
             elif task.kanban_state == 'Orange':
                 task.kanban_state_label = task.legend_erection
             elif task.kanban_state == 'Yellow':
                 task.kanban_state_label = task.legend_blocked
             else:
-                task.kanban_state_label = task.legend_done
+                task.kanban_state_label = task.legend_normal
     @api.multi
     def write(self,vals):
         logging.info(vals)
