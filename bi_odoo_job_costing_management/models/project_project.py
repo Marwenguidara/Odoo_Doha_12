@@ -23,7 +23,7 @@ class Project(models.Model):
     # compute the total real cost of the project & the total estimated cost
     total_cost = fields.Float("Total Cost")
     total_cost1 = fields.Float("Total Cost" , compute="get_total_cost",store=True)
-    total_estimated_cost1 = fields.Float('estimated' , compute='get_cost_estimated',store=True)
+    total_estimated_cost1 = fields.Float('estimated',compute="get_total_cost",store=True)
     total_estimated_cost = fields.Float("Total Estimated Cost", compute="_compute_total_estimated_cost", default=0.0)
     Drawing_count = fields.Integer(string='drawing', compute='get_drawing_count')
     Estimation_count = fields.Integer(string='estimation', compute='get_estimation_count')
@@ -73,12 +73,14 @@ class Project(models.Model):
     @api.depends('total_cost')
     def get_total_cost(self):
         for record in self :
+            logging.info('cossssssssssssst')
             record.total_cost1 = record.total_cost
+            record.total_estimated_cost1 = record.total_estimated_cost
 
-    @api.multi
-    @api.depends('total_estimated_cost')
+
     def get_cost_estimated(self):
         for record in self:
+            logging.info('tesssssssssssssssst')
             record.total_estimated_cost1 = record.total_estimated_cost
 
     # compute the amount of any department
@@ -258,11 +260,14 @@ class Project(models.Model):
             project.total_cost=total_cost
 
     def _compute_total_estimated_cost(self):
+        logging.info('esssssssssssssssssssstt')
         for project in self:
             project.total_estimated_cost = 0.0
+            project.total_estimated_cost1 = 0.0
             cost_sheet = self.env['construction.estimation'].search([('project_id', '=', project.id)])
             for sheet in cost_sheet:
                 project.total_estimated_cost += sheet.amount_total
+                project.total_estimated_cost1 += sheet.amount_total
 
     # computing the selling price of all drawings in the project
     def _compute_selling_price(self):
@@ -362,11 +367,17 @@ class Project(models.Model):
 
     @api.multi
     def write(self, vals):
+        logging.info(vals)
+        if 'total_estimated_cost' in vals:
+            vals["total_estimated_cost1"] = vals["total_estimated_cost"]
         res = super(Project, self).write(vals)
+
         if 'active' in vals:
             # archiving/unarchiving a project does it on its issues, too
             issues = self.with_context(active_test=False).mapped('issue_ids')
             issues.write({'active': vals['active']})
+        
+
         return res
 
     @api.multi
