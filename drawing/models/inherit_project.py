@@ -37,7 +37,7 @@ class Project(models.Model):
     def action_open_items_number(self):
         self.ensure_one()
         return {
-            'name': _('Items Code'),
+            'name': _('Items Number'),
             'domain': [('project_id', '=', self.id)],
             'view_type': 'form',
             'res_model': 'item.number',

@@ -362,11 +362,12 @@ class ItemCodeID(models.Model):
     @api.multi
     @api.depends('stage_id')
     def set_state_kanban(self):
-        j = 0
-        k = 0
-        y = 0
-        f = 0
+        
         for record in self :
+                j = 0
+                k = 0
+                y = 0
+                f = 0
 
                 if record.stage_id.sequence == 2:
                     record.kanban_state='Blue'
@@ -379,26 +380,7 @@ class ItemCodeID(models.Model):
                     record.kanban_state='Yellow'
                 if record.stage_id.sequence == 1:
                     record.kanban_state='White'
-                rech_item_fin = self.env['item.code'].sudo().search([('item_id','=',record.item_id.id)])
-                logging.info(rech_item_fin)
-                if rech_item_fin : 
-                    for i in rech_item_fin:
-                        if i.stage_id.sequence == 5:
-                            j += 1
-                        if i.stage_id.sequence == 4:
-                            k += 1
-                        if i.stage_id.sequence == 3:
-                            y += 1
-                        if i.stage_id.sequence == 2:
-                            f += 1
-                if  len(rech_item_fin) == j:
-                    rech_item_fin[0].item_id.sudo().write({'stage_id':5})  
-                elif  len(rech_item_fin) == k:
-                    rech_item_fin[0].item_id.sudo().write({'stage_id':4})
-                elif  len(rech_item_fin) == y:
-                    rech_item_fin[0].item_id.sudo().write({'stage_id':3}) 
-                elif  len(rech_item_fin) == f:
-                    rech_item_fin[0].item_id.sudo().write({'stage_id':2})
+                
             
         
                     
@@ -507,12 +489,17 @@ class ItemSub(models.Model):
     @api.multi
     @api.depends('stage_id')
     def set_state_kanban(self):
-        j = 0
-        k = 0
-        y = 0
-        f = 0
+        
 
         for record in self :
+            j = 0
+            k = 0
+            y = 0
+            f = 0
+            j1 = 0
+            k1 = 0
+            y1 = 0
+            f1 = 0
             if record.stage_id.sequence == 2:
                     record.kanban_state='Blue'
             if record.stage_id.sequence == 5:
@@ -544,6 +531,26 @@ class ItemSub(models.Model):
                     rech_item_fin[0].code_id.sudo().write({'stage_id':3}) 
                 elif  len(rech_item_fin) == f:
                     rech_item_fin[0].code_id.sudo().write({'stage_id':2})
+            rech_item_code = self.env['item.code'].sudo().search([('item_id','=',record.item_id.id)])
+            logging.info(rech_item_code)
+            if rech_item_code : 
+                for i1 in rech_item_code:
+                    if i1.stage_id.sequence == 5:
+                        j1 += 1
+                    if i1.stage_id.sequence == 4:
+                        k1 += 1
+                    if i1.stage_id.sequence == 3:
+                        y1 += 1
+                    if i1.stage_id.sequence == 2:
+                        f1 += 1
+            if  len(rech_item_code) == j1:
+                rech_item_code[0].item_id.sudo().write({'stage_id':5})  
+            elif  len(rech_item_code) == k1:
+                rech_item_code[0].item_id.sudo().write({'stage_id':4})
+            elif  len(rech_item_code) == y1:
+                rech_item_code[0].item_id.sudo().write({'stage_id':3}) 
+            elif  len(rech_item_code) == f1:
+                rech_item_code[0].item_id.sudo().write({'stage_id':2})
                     
                 # if len(record.sub_ids)==j:
                 #     record.sudo().write({"stage_id":4})
